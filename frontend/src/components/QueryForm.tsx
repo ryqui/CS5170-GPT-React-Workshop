@@ -19,6 +19,7 @@ import ExpandableText from "./ExpandableText";
 // This defines the schema for the form used, expand here for form input validation
 const schema = z.object({
   subject: z.string(),
+  why: z.string(),
   modifier: z.string(),
   additional: z.string(),
 });
@@ -33,12 +34,15 @@ type FormData = z.infer<typeof schema>;
  */
 const formatString = (
   subject: string,
+  why: string,
   modifier: string,
   additional: string
 ) => {
   return (
     "Tell me about: [" +
     subject +
+    "], using reasoning: [" +
+    why +
     "], answer me with the following tones in mind: [" +
     modifier +
     "]" +
@@ -75,8 +79,8 @@ const QueryForm = () => {
     const { request, cancel } = createResponseService().postMessages([
       {
         role: "user",
-        content: formatString(data.subject, data.modifier, data.additional),
-      },
+        content: formatString(data.subject, data.why, data.modifier, data.additional),
+      }, 
     ]);
 
     // Request is sent
@@ -107,6 +111,16 @@ const QueryForm = () => {
           <input
             {...register("subject")}
             id="subject"
+            type="text"
+            className="form-control"
+          />
+
+          <label htmlFor="why" className="form-label">
+            Why do you want to know about this?
+          </label>
+          <input
+            {...register("why")}
+            id="why"
             type="text"
             className="form-control"
           />

@@ -11,6 +11,7 @@ import {
   // Backend model route options
   createResponseService, // Default
   createParentalService,
+  createShakespeareService,
   createExpertResponseService,
   createLikeService,
 } from "../services/backend-service";
@@ -48,7 +49,7 @@ const QueryBox = () => {
     setIsLoading(true); // Triggers the loading animation
 
     // Creates post request for backend gpt model
-    const { request, cancel } = createResponseService().postMessages([
+    const { request, cancel } = createShakespeareService().postMessages([
       { role: "user", content: data.query },
     ]);
 

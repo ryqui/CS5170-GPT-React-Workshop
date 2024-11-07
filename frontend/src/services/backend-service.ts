@@ -79,6 +79,18 @@ const createParentalService = () => {
 }
 
 /**
+ * Creates a connection for parentally controlled interactions.
+ * @returns new HttpService object to the parental route.
+ */
+const createShakespeareService = () => {
+    return new HttpService("/shakespeare");
+}
+
+const createCustomChatService = () => {
+    return new HttpService("/custom-image-chat");
+}
+
+/**
  * Creates a connection for gpt interactions with specific domain knowledge.
  * @returns new HttpService object to the expert route.
  */
@@ -111,4 +123,4 @@ const createLikeService = () => {
     return new HttpService("/like");
 }
 
-export { createResponseService, createParentalService, createExpertResponseService, createLikeService, createSampleImageService, createImageService, postPayload, createService };
+export { createResponseService, createParentalService, createCustomChatService, createShakespeareService, createExpertResponseService, createLikeService, createSampleImageService, createImageService, postPayload, createService };

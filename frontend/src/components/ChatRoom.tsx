@@ -11,6 +11,7 @@ import {
   // Backend model route options
   createResponseService, // Default
   createParentalService,
+  createCustomChatService,
   createExpertResponseService,
   createLikeService,
 } from "../services/backend-service";
@@ -63,7 +64,7 @@ function ChatRoom() {
 
     // console.log("PAYLOAD", payload);
     // We construct post request to include the interaction history
-    const { request, cancel } = createResponseService().postMessages(payload);
+    const { request, cancel } = createCustomChatService().postMessages(payload);
 
     // Sends request
     request
